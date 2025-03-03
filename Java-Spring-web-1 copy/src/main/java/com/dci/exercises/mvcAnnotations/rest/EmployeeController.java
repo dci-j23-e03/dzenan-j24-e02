@@ -8,11 +8,13 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import javax.annotation.PostConstruct;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RestController
 @RequestMapping("/api/v1/employees")
@@ -54,8 +56,15 @@ public class EmployeeController {
 
     // read
     @GetMapping("/")
-    public List<Employee> retrieveEmployees() {
-        return employees;
+    public List<Employee> retrieveEmployees(@RequestParam(required = false, defaultValue = "0") int limit) {
+        
+        if (limit <= 0) {
+            return employees;
+        }
+
+        return employees.stream()
+                .limit(limit)
+                .collect(Collectors.toList());
     }
 
     // read by id

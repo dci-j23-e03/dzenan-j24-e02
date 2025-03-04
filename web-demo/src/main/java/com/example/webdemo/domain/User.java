@@ -1,4 +1,4 @@
-package com.example.webdemo.model;
+package com.example.webdemo.domain;
 
 public class User {
   private String name;

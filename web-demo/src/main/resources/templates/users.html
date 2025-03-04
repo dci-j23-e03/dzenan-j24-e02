@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Users</title>
+</head>
+<body>
+  <div th:each="user : ${users}">
+    <div>
+      <label for="name">Name: </label>
+      <span id="name" th:text="${user.name}"></span>
+    </div>
+    <div>
+      <label for="lastName">Last name: </label>
+      <span id="lastName" th:text="${user.getLastName()}"></span>
+    </div>
+  </div>
+</body>
+</html>
